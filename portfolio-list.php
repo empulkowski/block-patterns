@@ -29,3 +29,4 @@ function portfolio_list_portfolio_list_block_init() {
 	register_block_type( __DIR__ . '/build/portfolio-list' );
 }
 add_action( 'init', 'portfolio_list_portfolio_list_block_init' );
+include "patterns.php";
