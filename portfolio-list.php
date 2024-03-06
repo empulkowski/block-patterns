@@ -27,7 +27,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 function portfolio_list_portfolio_list_block_init() {
 	register_block_type( __DIR__ . '/build' );
 	register_block_type( __DIR__ . '/build/portfolio-list' );
-	register_block_type( __DIR__ . '/build/staff-finder' );
+	register_block_type( __DIR__ . '/build/blocks/staff-finder' );
 
 
 }

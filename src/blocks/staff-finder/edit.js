@@ -27,12 +27,12 @@ import './editor.scss';
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit
  *
- * @return {Element} Element to render.
+ * @return {JSX.Element} Element to render.
  */
 export default function Edit() {
 	return (
-		<p { ...useBlockProps() }>
-			{ __( 'Staff Finder – hello from the editor!', 'staff-finder' ) }
-		</p>
+		<div { ...useBlockProps() }>
+			<p>Staff finder will display here.</p>
+		</div>
 	);
 }

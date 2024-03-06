@@ -4,7 +4,7 @@
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { useBlockProps } from '@wordpress/block-editor';
+import {useBlockProps} from '@wordpress/block-editor';
 
 /**
  * The save function defines the way in which the different attributes should
@@ -13,12 +13,12 @@ import { useBlockProps } from '@wordpress/block-editor';
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#save
  *
- * @return {Element} Element to render.
+ * @return {JSX.Element} Element to render.
  */
 export default function save() {
 	return (
-		<p { ...useBlockProps.save() }>
-			{ 'Staff Finder – hello from the saved content!' }
-		</p>
+		<div {...useBlockProps.save()}>
+			loading...
+		</div>
 	);
 }
