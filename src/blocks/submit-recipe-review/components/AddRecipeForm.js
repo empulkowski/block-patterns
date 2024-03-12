@@ -1,10 +1,12 @@
 import React from "react";
-
-export default class AddReviewForm extends React.Component {
+import StarRating from "./starRating";
+import "../style.scss"
+export default class AddRecipeForm extends React.Component {
 	state = {
 		title: '',
 		review: '',
 		rating: 0,
+		range: 0,
 	};
 
 	addReview(e) {
@@ -14,9 +16,10 @@ export default class AddReviewForm extends React.Component {
 			title: this.state.title,
 			content: this.state.review,
 			acf: {
-				//this needs to match the name of your acf fields
 				recipe_rating: parseInt(this.state.rating) || 0,
+				recipe_range: this.state.range,
 			},
+
 
 			// maybe you should validate better before doing this?
 			status: 'publish',
@@ -24,13 +27,14 @@ export default class AddReviewForm extends React.Component {
 
 		// we can't assume any props are provided
 		// ?. only calls the method if it exists
-		// this.props.addReview?.(newReview);
-
-
-		if(this.props.addReview){
+		if (this.props && this.props.addReview) {
 			this.props.addReview(newReview);
+
 		}
+
+		this.setState({title: '', range: 0, review: '', rating: 0})
 	}
+
 
 	render() {
 		return (
@@ -40,7 +44,7 @@ export default class AddReviewForm extends React.Component {
 			>
 				<div>
 					<label>
-						Title:
+						Recipe Name:
 						<input type="text"
 							   value={this.state.title}
 							   onInput={e => this.setState({title: e.target.value})}
@@ -50,17 +54,32 @@ export default class AddReviewForm extends React.Component {
 
 				<div>
 					<label>
-						Overall Rating:
+						Cooking Time:
 						<input type="number"
-							   value={this.state.rating}
-							   onInput={e => this.setState({rating: e.target.value})}
+							   value={this.state.range}
+							   onChange={e => this.setState({range: e.target.value})}
+
+
 						/>
 					</label>
 				</div>
 
 				<div>
 					<label>
-						Review:
+						{/*<input type="number"*/}
+						Rating:
+						{/*<input type="number"*/}
+						{/*	   value={this.state.rating}*/}
+						{/*	   onInput={e => this.setState({rating: e.target.value})}*/}
+						{/*/>*/}
+						<StarRating rating={this.state.rating} setRating={rating => this.setState({rating})}/>
+
+					</label>
+				</div>
+
+				<div>
+					<label>
+						Comments:
 						<textarea
 							value={this.state.review}
 							onInput={e => this.setState({review: e.target.value})}
@@ -68,7 +87,7 @@ export default class AddReviewForm extends React.Component {
 					</label>
 				</div>
 
-				<button type="submit">Add Review</button>
+				<button type="submit">Add Your Review</button>
 			</form>
 		);
 	}

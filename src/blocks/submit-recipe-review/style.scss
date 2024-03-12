@@ -1,0 +1,117 @@
+.wp-block-ep-submit-recipe-review {
+	.new-review-form {
+		background-color: blue;
+		padding: 20px;
+		max-width: 400px;
+		box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+		border-radius: 8px;
+		margin: 0 auto;
+
+		input[type="text"],
+		textarea {
+			width: 100%;
+			padding: 10px;
+			margin-bottom: 15px;
+			border: none;
+			border-radius: 4px;
+			box-sizing: border-box;
+		}
+
+		button {
+			width: 100%;
+			padding: 10px;
+			background-color: #007bff;
+			color: white;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+			transition: background-color 0.3s ease;
+		}
+
+		button:hover {
+			background-color: #0056b3;
+		}
+	}
+
+	.error-msg {
+		background-color: #fc1a1a;
+		padding: 15px;
+		color: white;
+		border-radius: 4px;
+		margin-bottom: 15px;
+	}
+
+	.review-list {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+
+	.review-card {
+		width: 45%;
+		padding: 20px;
+		margin: 10px;
+		background-color: #f9f9f9;
+		box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+		border-radius: 8px;
+
+		.review-title {
+			font-weight: bold;
+			margin-bottom: 10px;
+		}
+
+		.review-content {
+			margin-bottom: 10px;
+		}
+
+		.stars {
+			font-size: 1.2em;
+			margin-bottom: 10px;
+		}
+	}
+}
+
+.recipe_card {
+	background-color: #fff;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	padding: 20px;
+	margin-bottom: 20px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.recipe_title {
+	font-size: 1.2rem;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+.recipe_rating {
+	font-size: 1rem;
+	color: #333;
+	margin-bottom: 10px;
+}
+.recipe_range {
+	color: blue;
+}
+.recipe_content {
+	font-size: 1rem;
+	color: #666;
+	line-height: 1.5;
+}
+.stars {
+	.star {
+		&:hover {
+			cursor: pointer;
+		}
+		&.on{
+			color: yellow;
+		}
+		&.off {
+			color: grey;
+		}
+	}
+	&.readonly{
+		pointer-events: none;
+	}
+}

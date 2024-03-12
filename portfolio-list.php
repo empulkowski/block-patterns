@@ -28,8 +28,13 @@ function portfolio_list_portfolio_list_block_init() {
 	register_block_type( __DIR__ . '/build' );
 	register_block_type( __DIR__ . '/build/portfolio-list' );
 	register_block_type( __DIR__ . '/build/blocks/staff-finder' );
+//	register_block_type( __DIR__ . '/build/blocks/submit-review' );
+	register_block_type( __DIR__ . '/build/blocks/submit-recipe-review' );
 
 
+//load the backbone JS Client
+	wp_enqueue_script('wp-api');
 }
 add_action( 'init', 'portfolio_list_portfolio_list_block_init' );
 include "patterns.php";
+
