@@ -2,12 +2,27 @@
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/submit-recipe-review/style.scss ***!
   \*******************************************************************************************************************************************************************************************************************************************************************/
 .wp-block-ep-submit-recipe-review .new-review-form {
-  background-color: blue;
+  background-color: #f9f9f9;
   padding: 20px;
-  max-width: 400px;
-  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
+  max-width: 500px;
   margin: 0 auto;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.wp-block-ep-submit-recipe-review .new-review-form .star-rating label i.fa:before {
+  content: "\f005"; /* Replace with the star icon from Font Awesome */
+  color: #ddd;
+}
+.wp-block-ep-submit-recipe-review .new-review-form .star-rating label i.fa:hover:before,
+.wp-block-ep-submit-recipe-review .new-review-form .star-rating label i.fa:hover ~ i.fa:before {
+  color: #ffc107;
+}
+.wp-block-ep-submit-recipe-review .new-review-form .star-rating input[type=radio]:checked ~ label i.fa:before,
+.wp-block-ep-submit-recipe-review .new-review-form .star-rating input[type=radio]:checked ~ label i.fa:hover:before {
+  color: #ffc107;
+}
+.wp-block-ep-submit-recipe-review .new-review-form .star-rating input[type=radio]:hover ~ label i.fa:before {
+  color: #ddd;
 }
 .wp-block-ep-submit-recipe-review .new-review-form input[type=text],
 .wp-block-ep-submit-recipe-review .new-review-form textarea {
@@ -107,4 +122,4 @@
   pointer-events: none;
 }
 
-/*# sourceMappingURL=style-view.css.map*/
+/*# sourceMappingURL=style-index.css.map*/

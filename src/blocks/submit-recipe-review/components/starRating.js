@@ -1,19 +1,40 @@
-import React, {useState} from 'react';
-import "../style.scss";
+import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 
-export default function StarRating({rating, setRating, readonly}){
+export default function StarRating({ rating, setRating, readonly }) {
 	const [hover, setHover] = useState(rating || 0);
+
+	const handleStarClick = (star) => {
+		if (!readonly) {
+			setRating(star);
+		}
+	};
+
+	const handleMouseEnter = (star) => {
+		if (!readonly) {
+			setHover(star);
+		}
+	};
+
+	const handleMouseLeave = () => {
+		if (!readonly) {
+			setHover(rating);
+		}
+	};
+
 	return (
-		<div className={readonly ? 'readonly stars' : "stars"}>
-			{[1,2,3,4,5].map(star=> (
-
-					<span
-						className={(star <= hover) ? 'star on': 'star off'}
-						onClick={()=> {setRating(star)}}
-						onMouseEnter={()=>setHover(star)}
-						onMouseLeave={()=>setHover(rating)}>*</span>
-
-))}
+		<div className={readonly ? 'readonly stars' : 'stars'} onMouseLeave={handleMouseLeave}>
+			{[1, 2, 3, 4, 5].map((star) => (
+				<span
+					key={star}
+					className={star <= (hover || rating) ? 'star on' : 'star off'}
+					onClick={() => handleStarClick(star)}
+					onMouseEnter={() => handleMouseEnter(star)}
+				>
+          <FontAwesomeIcon icon={faStar} />
+        </span>
+			))}
 		</div>
-	)
+	);
 }

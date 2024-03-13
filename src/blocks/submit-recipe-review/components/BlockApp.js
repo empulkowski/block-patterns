@@ -4,13 +4,16 @@ import React from "react";
 import RecipeList from "./RecipeList";
 import AddRecipeForm from "./AddRecipeForm";
 
+
 export default class BlockApp extends React.Component {
 	state = {
 		reviews: [],
 		loggedIn: null,
 	};
 
-	addReview(newReview){
+	addReview(newReview, cookingSkill){
+		newReview.cookingSkill = cookingSkill;
+
 		const review = new wp.api.models.Review(newReview);
 		review.save().done(data => {
 			console.log('saved!', data);
@@ -61,7 +64,8 @@ export default class BlockApp extends React.Component {
 				<RecipeList reviews={this.state.reviews} />
 				<hr />
 				<h3>Submit a Review</h3>
-				{this.state.loggedIn === true && <AddRecipeForm addReview={reviewObj => this.addReview(reviewObj)}/>}
+				<AddRecipeForm addReview={(reviewObj, cookingSkill) => this.addReview(reviewObj, cookingSkill)} />
+				{/*{this.state.loggedIn === true && <AddRecipeForm addReview={reviewObj => this.addReview(reviewObj)}/>}*/}
 				{this.state.loggedIn === false && <div className="error-msg">You must be logged in to submit a review</div>}
 
 			</div>

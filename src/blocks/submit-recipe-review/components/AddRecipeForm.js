@@ -1,23 +1,46 @@
 import React from "react";
 import StarRating from "./starRating";
-import "../style.scss"
+import { RangeControl } from '@wordpress/components';
+import { CheckboxControl } from '@wordpress/components';
+
 export default class AddRecipeForm extends React.Component {
 	state = {
 		title: '',
 		review: '',
 		rating: 0,
-		range: 0,
+		range: 2,
+		cookingSkill: {
+			beginner: false,
+			intermediate: false,
+			advanced: false,
+		},
 	};
+	constructor(props) {
+		super(props);
+		this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
+	}
 
+	// Rest of the component code...
+
+	handleCheckboxChange(skill) {
+		const updatedSkill = { ...this.state.cookingSkill, [skill]: !this.state.cookingSkill[skill] };
+		this.setState({ cookingSkill: updatedSkill });
+	}
 	addReview(e) {
 		e.preventDefault();
+
+		const { title, review, rating, range, cookingSkill } = this.state;
+		const selectedCookingSkills = Object.entries(cookingSkill)
+			.filter(([_, isChecked]) => isChecked)
+			.map(([skill, _]) => skill);
 
 		const newReview = {
 			title: this.state.title,
 			content: this.state.review,
 			acf: {
 				recipe_rating: parseInt(this.state.rating) || 0,
-				recipe_range: this.state.range,
+				recipe_range: this.state.range || 2,
+				cooking_skill: selectedCookingSkills,
 			},
 
 
@@ -28,13 +51,27 @@ export default class AddRecipeForm extends React.Component {
 		// we can't assume any props are provided
 		// ?. only calls the method if it exists
 		if (this.props && this.props.addReview) {
-			this.props.addReview(newReview);
+			this.props.addReview(newReview, this.state.cookingSkill);
 
 		}
 
-		this.setState({title: '', range: 0, review: '', rating: 0})
+		this.setState({title: '',
+			range: 0,
+			review: '',
+			rating: 0,
+			cookingSkill: {
+				beginner: false,
+				intermediate: false,
+				advanced: false,
+			},
+
+		})
 	}
 
+	handleCheckboxChange(skill) {
+		const updatedSkill = { ...this.state.cookingSkill, [skill]: !this.state.cookingSkill[skill] };
+		this.setState({ cookingSkill: updatedSkill });
+	}
 
 	render() {
 		return (
@@ -53,16 +90,37 @@ export default class AddRecipeForm extends React.Component {
 				</div>
 
 				<div>
-					<label>
-						Cooking Time:
-						<input type="number"
-							   value={this.state.range}
-							   onChange={e => this.setState({range: e.target.value})}
-
-
-						/>
-					</label>
+					<RangeControl
+						label="Cooking Time"
+						value={this.state.range} // Ensure this is correct
+						onChange={(value) => {
+							console.log("New range value:", value); // Adding console.log
+							this.setState({range: value});
+						}}
+						min={0}
+						max={300}
+					/>
 				</div>
+
+				<div>
+					<label>Recipe Skill:</label>
+					<CheckboxControl
+						label="Beginner"
+						checked={this.state.cookingSkill.beginner}
+						onChange={() => this.handleCheckboxChange('beginner')}
+					/>
+					<CheckboxControl
+						label="Intermediate"
+						checked={this.state.cookingSkill.intermediate}
+						onChange={() => this.handleCheckboxChange('intermediate')}
+					/>
+					<CheckboxControl
+						label="Advanced"
+						checked={this.state.cookingSkill.advanced}
+						onChange={() => this.handleCheckboxChange('advanced')}
+					/>
+				</div>
+
 
 				<div>
 					<label>
