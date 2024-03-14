@@ -7,7 +7,7 @@ export default class RecipeList extends React.Component {
 		return (
 			<div className="review-list">
 				{this.props.reviews.map(review => {
-					console.log("Recipe Range:", review.attributes.acf.recipe_range); // Log recipe_range
+					console.log("Recipe Range:", review.attributes.acf.recipe_range);
 					return (
 						<RecipeCard
 							title={review.attributes.title.rendered}

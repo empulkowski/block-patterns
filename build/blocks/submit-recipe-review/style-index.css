@@ -109,6 +109,10 @@
   line-height: 1.5;
 }
 
+.stars {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
 .stars .star:hover {
   cursor: pointer;
 }

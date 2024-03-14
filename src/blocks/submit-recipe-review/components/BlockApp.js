@@ -14,7 +14,7 @@ export default class BlockApp extends React.Component {
 	addReview(newReview, cookingSkill){
 		newReview.cookingSkill = cookingSkill;
 
-		const review = new wp.api.models.Review(newReview);
+		const review = new wp.api.models.Recipe(newReview);
 		review.save().done(data => {
 			console.log('saved!', data);
 			this.getReviews();
@@ -24,7 +24,7 @@ export default class BlockApp extends React.Component {
 	}
 
 	getReviews(getReview) {
-		const reviewCollection = new wp.api.collections.Review();
+		const reviewCollection = new wp.api.collections.Recipe();
 		reviewCollection.fetch()
 			.done(data => {
 				console.log('recipe reviews!', data, reviewCollection);

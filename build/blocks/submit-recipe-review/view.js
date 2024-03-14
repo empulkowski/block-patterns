@@ -475,77 +475,50 @@ class AddRecipeForm extends (react__WEBPACK_IMPORTED_MODULE_0___default().Compon
     title: '',
     review: '',
     rating: 0,
-    range: 2,
-    cookingSkill: {
-      beginner: false,
-      intermediate: false,
-      advanced: false
-    }
+    range: 0,
+    cookingSkill: ''
   };
-  constructor(props) {
-    super(props);
-    this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
-  }
 
-  // Rest of the component code...
+  // This function toggles the checkbox values in the state
+  // handleCheckboxChange = (skill) => {
+  // 	this.setState(prevState => ({
+  // 		cookingSkill: {
+  // 			...prevState.cookingSkill,
+  // 			[skill]: !prevState.cookingSkill[skill]
+  // 		}
+  // 	}));
+  // }
 
-  handleCheckboxChange(skill) {
-    const updatedSkill = {
-      ...this.state.cookingSkill,
-      [skill]: !this.state.cookingSkill[skill]
-    };
-    this.setState({
-      cookingSkill: updatedSkill
-    });
-  }
-  addReview(e) {
+  addReview = e => {
     e.preventDefault();
-    const {
-      title,
-      review,
-      rating,
-      range,
-      cookingSkill
-    } = this.state;
-    const selectedCookingSkills = Object.entries(cookingSkill).filter(([_, isChecked]) => isChecked).map(([skill, _]) => skill);
+
+    // const { title, review, rating, range, cookingSkill } = this.state;
+
     const newReview = {
       title: this.state.title,
       content: this.state.review,
       acf: {
         recipe_rating: parseInt(this.state.rating) || 0,
-        recipe_range: this.state.range || 2,
-        cooking_skill: selectedCookingSkills
+        recipe_range: parseInt(this.state.range) || 0,
+        cooking_skill: this.state.cookingSkill
       },
-      // maybe you should validate better before doing this?
       status: 'publish'
     };
 
-    // we can't assume any props are provided
-    // ?. only calls the method if it exists
+    // Invoking the addReview function from props, sending the new Review data and the cooking skill
     if (this.props && this.props.addReview) {
-      this.props.addReview(newReview, this.state.cookingSkill);
+      this.props.addReview(newReview);
     }
+
+    // Resetting the state
     this.setState({
       title: '',
       range: 0,
       review: '',
       rating: 0,
-      cookingSkill: {
-        beginner: false,
-        intermediate: false,
-        advanced: false
-      }
+      cookingSkill: ''
     });
-  }
-  handleCheckboxChange(skill) {
-    const updatedSkill = {
-      ...this.state.cookingSkill,
-      [skill]: !this.state.cookingSkill[skill]
-    };
-    this.setState({
-      cookingSkill: updatedSkill
-    });
-  }
+  };
   render() {
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("form", {
       className: "new-review-form",
@@ -556,31 +529,27 @@ class AddRecipeForm extends (react__WEBPACK_IMPORTED_MODULE_0___default().Compon
       onInput: e => this.setState({
         title: e.target.value
       })
-    }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RangeControl, {
-      label: "Cooking Time",
-      value: this.state.range // Ensure this is correct
-      ,
-      onChange: value => {
-        console.log("New range value:", value); // Adding console.log
-        this.setState({
-          range: value
-        });
-      },
+    }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", null, "Cooking Time:", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
+      type: "range",
+      value: this.state.range,
+      onChange: e => this.setState({
+        range: e.target.value
+      }),
       min: 0,
-      max: 300
-    })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", null, "Recipe Skill:"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.CheckboxControl, {
-      label: "Beginner",
-      checked: this.state.cookingSkill.beginner,
-      onChange: () => this.handleCheckboxChange('beginner')
-    }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.CheckboxControl, {
-      label: "Intermediate",
-      checked: this.state.cookingSkill.intermediate,
-      onChange: () => this.handleCheckboxChange('intermediate')
-    }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.CheckboxControl, {
-      label: "Advanced",
-      checked: this.state.cookingSkill.advanced,
-      onChange: () => this.handleCheckboxChange('advanced')
-    })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", null, "Rating:", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_starRating__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      max: 300,
+      step: 5
+    })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, this.state.range)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", null, "Recipe Skill:"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("select", {
+      value: this.state.cookingSkill,
+      onChange: e => this.setState({
+        cookingSkill: e.target.value
+      })
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
+      value: "beginner"
+    }, "Beginner"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
+      value: "intermediate"
+    }, "Intermediate"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
+      value: "advanced"
+    }, "Advanced"))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", null, "Rating:", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_starRating__WEBPACK_IMPORTED_MODULE_1__["default"], {
       rating: this.state.rating,
       setRating: rating => this.setState({
         rating
@@ -627,7 +596,7 @@ class BlockApp extends (react__WEBPACK_IMPORTED_MODULE_0___default().Component) 
   };
   addReview(newReview, cookingSkill) {
     newReview.cookingSkill = cookingSkill;
-    const review = new wp.api.models.Review(newReview);
+    const review = new wp.api.models.Recipe(newReview);
     review.save().done(data => {
       console.log('saved!', data);
       this.getReviews();
@@ -636,7 +605,7 @@ class BlockApp extends (react__WEBPACK_IMPORTED_MODULE_0___default().Component) 
     });
   }
   getReviews(getReview) {
-    const reviewCollection = new wp.api.collections.Review();
+    const reviewCollection = new wp.api.collections.Recipe();
     reviewCollection.fetch().done(data => {
       console.log('recipe reviews!', data, reviewCollection);
       //store the models in our state
@@ -704,6 +673,7 @@ class RecipeCard extends (react__WEBPACK_IMPORTED_MODULE_0___default().Component
       rating,
       cookingSkill
     } = this.props;
+    console.log(range);
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "recipe_card"
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -715,9 +685,7 @@ class RecipeCard extends (react__WEBPACK_IMPORTED_MODULE_0___default().Component
       readonly: true
     }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "recipe_cooking_skills"
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "Recipe Skill:"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", null, cookingSkill && Object.entries(cookingSkill).map(([skill, isChecked]) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", {
-      key: skill
-    }, isChecked ? skill : null)))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "Recipe Skill:"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, cookingSkill)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "recipe_content",
       dangerouslySetInnerHTML: {
         __html: review
@@ -750,7 +718,7 @@ class RecipeList extends (react__WEBPACK_IMPORTED_MODULE_0___default().Component
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "review-list"
     }, this.props.reviews.map(review => {
-      console.log("Recipe Range:", review.attributes.acf.recipe_range); // Log recipe_range
+      console.log("Recipe Range:", review.attributes.acf.recipe_range);
       return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_RecipeCard__WEBPACK_IMPORTED_MODULE_1__["default"], {
         title: review.attributes.title.rendered,
         range: review.attributes.acf.recipe_range,
@@ -817,6 +785,18 @@ function StarRating({
     icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__.faStar
   }))));
 }
+// <div className="stars" onMouseLeave={handleMouseLeave}>
+// 	{[1, 2, 3, 4, 5].map((star) => (
+// 		<span
+// 			key={star}
+// 			className={`star ${star <= (hover || rating) ? 'on' : 'off'} ${readonly ? 'readonly' : ''}`}
+// 			onClick={() => handleStarClick(star)}
+// 			onMouseEnter={() => handleMouseEnter(star)}
+// 		>
+//           <FontAwesomeIcon icon={faStar}/>
+//         </span>
+// 	))}
+// </div>
 
 /***/ }),
 

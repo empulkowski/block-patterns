@@ -120,18 +120,24 @@
 	line-height: 1.5;
 }
 .stars {
+	font-size: 1.2em;
+	margin-bottom: 10px;
+
 	.star {
 		&:hover {
 			cursor: pointer;
 		}
-		&.on{
+
+		&.on {
 			color: yellow;
 		}
+
 		&.off {
 			color: grey;
 		}
 	}
-	&.readonly{
+
+	&.readonly {
 		pointer-events: none;
 	}
 }
