@@ -36,7 +36,7 @@
 .wp-block-ep-submit-recipe-review .new-review-form button {
   width: 100%;
   padding: 10px;
-  background-color: #007bff;
+  background-color: #333333;
   color: white;
   border: none;
   border-radius: 4px;
@@ -44,7 +44,10 @@
   transition: background-color 0.3s ease;
 }
 .wp-block-ep-submit-recipe-review .new-review-form button:hover {
-  background-color: #0056b3;
+  background-color: darkgreen;
+}
+.wp-block-ep-submit-recipe-review .skill {
+  margin-bottom: 20px;
 }
 .wp-block-ep-submit-recipe-review .error-msg {
   background-color: #fc1a1a;
@@ -71,7 +74,7 @@
   margin-bottom: 10px;
 }
 .wp-block-ep-submit-recipe-review .review-card .review-content {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 .wp-block-ep-submit-recipe-review .review-card .stars {
   font-size: 1.2em;
@@ -82,25 +85,27 @@
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 5px;
-  padding: 20px;
   margin-bottom: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 30px;
 }
 
 .recipe_title {
-  font-size: 1.2rem;
+  font-size: 2.2rem;
   font-weight: bold;
   margin-bottom: 10px;
+  background-color: #333333;
+  color: white;
+  padding: 10px 20px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  align-content: center;
 }
 
 .recipe_rating {
   font-size: 1rem;
   color: #333;
   margin-bottom: 10px;
-}
-
-.recipe_range {
-  color: blue;
 }
 
 .recipe_content {
@@ -124,6 +129,15 @@
 }
 .stars.readonly {
   pointer-events: none;
+}
+
+.new-review-form label {
+  font-family: sans-serif;
+  font-weight: bold;
+}
+
+.sans-serif {
+  font-family: sans-serif;
 }
 
 /*# sourceMappingURL=style-index.css.map*/

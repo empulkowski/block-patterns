@@ -9,7 +9,7 @@ export default class AddRecipeForm extends React.Component {
 		review: '',
 		rating: 0,
 		range: 0,
-		cookingSkill: '',
+		cookingSkill: 'beginner',
 
 	};
 
@@ -50,7 +50,7 @@ export default class AddRecipeForm extends React.Component {
 			range: 0,
 			review: '',
 			rating: 0,
-			cookingSkill: ''
+			cookingSkill: 'beginner'
 		});
 	}
 
@@ -116,7 +116,8 @@ export default class AddRecipeForm extends React.Component {
 				{/*		onChange={() => this.handleCheckboxChange('advanced')}*/}
 				{/*	/>*/}
 				{/*</div>*/}
-				<div>
+
+				<div class="skill">
 					<label>Recipe Skill:</label>
 					<select value={this.state.cookingSkill} onChange={e=>this.setState({cookingSkill:e.target.value})}>
 
@@ -124,21 +125,17 @@ export default class AddRecipeForm extends React.Component {
                         <option value="intermediate">Intermediate</option>
                         <option value="advanced">Advanced</option>
 					</select>
-
 				</div>
+
 
 				<div>
 					<label>
-						{/*<input type="number"*/}
 						Rating:
-						{/*<input type="number"*/}
-						{/*	   value={this.state.rating}*/}
-						{/*	   onInput={e => this.setState({rating: e.target.value})}*/}
-						{/*/>*/}
 						<StarRating rating={this.state.rating} setRating={rating => this.setState({rating})}/>
 
 					</label>
 				</div>
+
 
 				<div>
 					<label>

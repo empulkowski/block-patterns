@@ -1,5 +1,7 @@
 import React from "react";
 import StarRating from "./starRating"
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import { faClock } from "@fortawesome/free-solid-svg-icons";
 
 export default class RecipeCard extends React.Component {
 	render(){
@@ -8,13 +10,15 @@ export default class RecipeCard extends React.Component {
 		return (
 
 			<div className="recipe_card">
-				<div className="recipe_title">{title}</div>
-				<div className="recipe_range">{range}</div>
-				{/* <div className="recipe_rating">{rating}</div> */}
+				<div className="recipe_title sans-serif">{title}</div>
 				<StarRating rating={rating} readonly/>
-				<div className="recipe_cooking_skills">
-					<strong>Recipe Skill:</strong>
-					<p>{cookingSkill}</p>
+				<div className="recipe_range sans-serif">
+					<i className="fas fa-clock ml-2"></i><strong>Cook Time:</strong> {range} minutes
+				</div>
+
+				<div className="recipe_cooking_skills sans-serif">
+					<strong>Skill Level:</strong> {cookingSkill}
+
 					{/*<ul>*/}
 					{/*	{cookingSkill &&*/}
 					{/*		Object.entries(cookingSkill).map(([skill, isChecked]) => (*/}
@@ -22,6 +26,10 @@ export default class RecipeCard extends React.Component {
 					{/*	))}*/}
 					{/*</ul>*/}
 				</div>
+
+				<hr/>
+				{/* <div className="recipe_rating">{rating}</div> */}
+
 				<div className="recipe_content" dangerouslySetInnerHTML={{__html: review}}></div>
 			</div>
 		)

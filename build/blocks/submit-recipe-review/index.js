@@ -54,6 +54,7 @@ __webpack_require__.r(__webpack_exports__);
  *
  * @return {Element} Element to render.
  */
+
 function Edit({
   attributes,
   setAttributes,

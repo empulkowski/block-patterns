@@ -476,7 +476,7 @@ class AddRecipeForm extends (react__WEBPACK_IMPORTED_MODULE_0___default().Compon
     review: '',
     rating: 0,
     range: 0,
-    cookingSkill: ''
+    cookingSkill: 'beginner'
   };
 
   // This function toggles the checkbox values in the state
@@ -516,7 +516,7 @@ class AddRecipeForm extends (react__WEBPACK_IMPORTED_MODULE_0___default().Compon
       range: 0,
       review: '',
       rating: 0,
-      cookingSkill: ''
+      cookingSkill: 'beginner'
     });
   };
   render() {
@@ -538,7 +538,9 @@ class AddRecipeForm extends (react__WEBPACK_IMPORTED_MODULE_0___default().Compon
       min: 0,
       max: 300,
       step: 5
-    })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, this.state.range)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", null, "Recipe Skill:"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("select", {
+    })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null, this.state.range)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      class: "skill"
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", null, "Recipe Skill:"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("select", {
       value: this.state.cookingSkill,
       onChange: e => this.setState({
         cookingSkill: e.target.value
@@ -661,6 +663,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _starRating__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./starRating */ "./src/blocks/submit-recipe-review/components/starRating.js");
+/* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
+
+
 
 
 
@@ -677,15 +682,17 @@ class RecipeCard extends (react__WEBPACK_IMPORTED_MODULE_0___default().Component
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "recipe_card"
     }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: "recipe_title"
-    }, title), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: "recipe_range"
-    }, range), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_starRating__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      className: "recipe_title sans-serif"
+    }, title), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_starRating__WEBPACK_IMPORTED_MODULE_1__["default"], {
       rating: rating,
       readonly: true
     }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: "recipe_cooking_skills"
-    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "Recipe Skill:"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, cookingSkill)), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "recipe_range sans-serif"
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("i", {
+      className: "fas fa-clock ml-2"
+    }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "Cook Time:"), " ", range, " minutes"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "recipe_cooking_skills sans-serif"
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "Skill Level:"), " ", cookingSkill), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("hr", null), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       className: "recipe_content",
       dangerouslySetInnerHTML: {
         __html: review
